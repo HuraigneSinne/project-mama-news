@@ -19,7 +19,11 @@ const fetchNews = async () => {
     summaries.push($("p", $news)[1].children[0].data);
   });
 
-  return urls, titles, summaries;
+  return {
+    urls: urls,
+    titles: titles,
+    summaries: summaries
+  };
 };
 
 fetchNews();
