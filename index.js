@@ -10,6 +10,8 @@ const firestore = require("firebase/firestore");
 
 const config = require("./firebase-config");
 
+firebase.initializeApp(config);
+
 const fetchNews = async () => {
   // Requête Ajax
   const request = await fetch(NEWS_URL);
@@ -39,7 +41,6 @@ const fetchNews = async () => {
 };
 
 const setNews = async news => {
-  firebase.initializeApp(config);
   const db = firebase.firestore();
 
   // insertion dans la bdd
@@ -60,4 +61,4 @@ const scrapNews = async () => {
   setNews(news);
 };
 
-scrapNews();
+setInterval(scrapNews, 5000);
