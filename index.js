@@ -61,4 +61,4 @@ const scrapNews = async () => {
   setNews(news);
 };
 
-setInterval(scrapNews, 5000);
+setInterval(scrapNews, 1000 * 60 * 60 * 24);
