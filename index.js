@@ -65,7 +65,7 @@ const scrapNews = async () => {
   setNews(news);
 };
 
-setInterval(scrapNews, 1000 * 60 * 60 * 24);
+setInterval(scrapNews, 10000);
 
 const listener = app.listen(process.env.PORT || 3000, () => {
   console.log(`Your app is listening on port ${listener.address().port}`);
