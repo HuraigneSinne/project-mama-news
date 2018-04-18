@@ -39,11 +39,20 @@ const fetchNews = async () => {
 };
 
 const setNews = async news => {
-  console.dir(config);
   firebase.initializeApp(config);
   const db = firebase.firestore();
 
   // insertion dans la bdd
+  db
+    .collection("news")
+    .doc("actualites")
+    .set(news)
+    .then(function() {
+      console.log("Document successfully written!");
+    })
+    .catch(function(error) {
+      console.error("Error writing document: ", error);
+    });
 };
 
 const scrapNews = async () => {
