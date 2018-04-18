@@ -1,3 +1,7 @@
+// Node server
+const express = require("express");
+const app = express();
+
 // Scraping
 const cheerio = require("cheerio");
 const fetch = require("node-fetch");
@@ -62,3 +66,7 @@ const scrapNews = async () => {
 };
 
 setInterval(scrapNews, 1000 * 60 * 60 * 24);
+
+const listener = app.listen(process.env.PORT || 3000, () => {
+  console.log(`Your app is listening on port ${listener.address().port}`);
+});
