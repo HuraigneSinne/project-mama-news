@@ -26,21 +26,27 @@ const fetchNews = async () => {
 
   // On récupère les divs des articles
   const $newsList = $(".entry-content");
+  const $images = $(".post-standard");
 
   // Puis on loop et on récupère ce qui nous intéresse
   const urls = [];
   const titles = [];
   const summaries = [];
+  const images = [];
+
   $newsList.each((i, $news) => {
     urls.push($(".title a", $news)[0].attribs.href);
     titles.push($(".title a", $news)[0].children[0].data);
     summaries.push($("p", $news)[1].children[0].data);
   });
-
+  $images.each((i, $img) => {
+    images.push($("img", $img)[0].attribs.src);
+  });
   return {
     urls: urls,
     titles: titles,
-    summaries: summaries
+    summaries: summaries,
+    images: images
   };
 };
 
@@ -61,12 +67,13 @@ const setNews = async news => {
 };
 
 const scrapNews = async () => {
+  // console.dir(await fetchNews());
   const news = await fetchNews();
   setNews(news);
 };
 
-setInterval(scrapNews, 1000 * 60 * 60 * 24);
-
+// setInterval(scrapNews, 1000 * 60 * 60 * 24);
+scrapNews();
 const listener = app.listen(process.env.PORT || 3000, () => {
   console.log(`Your app is listening on port ${listener.address().port}`);
 });
